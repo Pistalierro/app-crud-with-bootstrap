@@ -1,1 +1,54 @@
-<p>customer-details works!</p>
+<h2>Добавление покупателя</h2>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="customerForm">
+
+  <div class="mb-3">
+    <label class="form-label" for="name">{{ formLabels.name }}</label>
+    <input (blur)="onValueChanges()"
+           [class]="{'is-valid':   form['name'].valid,
+                     'is-invalid': form['name'].invalid && (form['name'].dirty || form['name'].touched)}"
+           class="form-control" formControlName="name" id="name" placeholder="{{formPlaceholders.name}}" type="text">
+    <div *ngIf="form['name'].valid" class="valid-feedback">{{ formSuccess }}</div>
+    <div *ngIf="form['name'].invalid && (form['name'].dirty || form['name'].touched)" class="invalid-feedback">{{ formErrors.name }}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="email">{{ formLabels.email }}</label>
+    <input (blur)="onValueChanges()"
+           [class]="{'is-valid':   form['email'].valid,
+                     'is-invalid': form['email'].invalid && (form['email'].dirty || form['email'].touched)}"
+           class="form-control" formControlName="email" id="email" placeholder="{{formPlaceholders.email}}" type="email">
+    <div *ngIf="form['email'].valid" class="valid-feedback">{{ formSuccess }}</div>
+    <div *ngIf="form['email'].invalid && (form['email'].dirty || form['email'].touched)" class="invalid-feedback">{{ formErrors.email }}
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="mobile">{{ formLabels.mobile }}</label>
+    <input (blur)="onValueChanges()"
+           [class]="{'is-valid':   form['mobile'].valid,
+                     'is-invalid': form['mobile'].invalid && (form['mobile'].dirty || form['mobile'].touched)}"
+           class="form-control" formControlName="mobile" id="mobile" placeholder="{{formPlaceholders.mobile}}" type="text">
+    <div *ngIf="form['mobile'].valid" class="valid-feedback">{{ formSuccess }}</div>
+    <div *ngIf="form['mobile'].invalid && (form['mobile'].dirty || form['mobile'].touched)"
+         class="invalid-feedback">{{ formErrors.mobile }}
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="location">{{ formLabels.location }}</label>
+    <input (blur)="onValueChanges()"
+           [class]="{'is-valid':   form['location'].valid,
+                     'is-invalid': form['location'].invalid && (form['location'].dirty || form['location'].touched)}"
+           class="form-control" formControlName="location" id="location" placeholder="{{formPlaceholders.location}}" type="text">
+    <div *ngIf="form['location'].valid" class="valid-feedback">{{ formSuccess }}</div>
+    <div *ngIf="form['location'].invalid && (form['location'].dirty || form['location'].touched)"
+         class="invalid-feedback">{{ formErrors.location }}
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <button [disabled]="customerForm.invalid" class="btn btn-info">Сохранить</button>
+  </div>
+
+</form>
