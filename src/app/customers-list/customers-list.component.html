@@ -17,7 +17,7 @@
 
 <ng-template #theadBlock>
   <thead>
-  <tr>
+  <tr class="tr">
     <th scope="col">#</th>
     <th scope="col">Имя и фамилия</th>
     <th scope="col">Email</th>
@@ -51,7 +51,7 @@
   <td class="align-middle">{{ customer.name }}</td>
   <td class="align-middle">{{ customer.email }}</td>
   <td class="align-middle">{{ customer.mobile }}</td>
-  <td class="align-middle">{{ customer.location }}</td>
+  <td class="align-middle green">{{ customer.location }}</td>
 </ng-template>
 
 <ng-template #customerControlsBlock let-customer="customer" let-i="index">
