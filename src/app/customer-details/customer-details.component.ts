@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
 import {FORM_ERRORS, FORM_LABELS, FORM_PLACEHOLDERS, FORM_SUCCESS, FORM_VALIDATION_MESSAGES} from '../shared/data/form-data';
 import {NgIf} from '@angular/common';
+import {CustomerInterface} from '../shared/types/customer.interface';
+import {DEFAULT_CUSTOMER} from '../shared/data/mock-data';
+import {HttpService} from '../shared/services/http.service';
 
 @Component({
   selector: 'crud-customer-details',
@@ -22,7 +25,7 @@ export class CustomerDetailsComponent implements OnInit {
   formErrors: any = FORM_ERRORS;
   validationMessages: any = FORM_VALIDATION_MESSAGES;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private httpService: HttpService) {
   }
 
   get form(): ValidationErrors {
@@ -34,7 +37,7 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.customerForm.value);
+    this.httpService.createData(this.customerForm.value).subscribe();
     this.customerForm.reset();
   }
 
@@ -50,13 +53,19 @@ export class CustomerDetailsComponent implements OnInit {
     });
   }
 
+  setControlsValue(customer: CustomerInterface): void {
+    Object.keys(this.customerForm.controls)
+      .forEach(key => this.customerForm.controls[key].setValue(customer[key as keyof CustomerInterface]));
+  }
+
   private initializeForm(): void {
     this.customerForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+      mobile: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(8), Validators.maxLength(12)]],
       location: ['', [Validators.required]],
     });
     this.customerForm.valueChanges.subscribe(() => this.onValueChanges());
+    this.setControlsValue(DEFAULT_CUSTOMER);
   }
 }
