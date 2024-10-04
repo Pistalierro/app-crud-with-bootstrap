@@ -1,4 +1,20 @@
 .controls {
-  width: 175px;
   text-align: right;
 }
+
+.tr {
+  th {
+    width: 21%;
+
+    &:first-child {
+      width: 30px;
+    }
+
+    &:last-child {
+      text-align: center;
+      width: 150px;
+    }
+
+  }
+}
+
