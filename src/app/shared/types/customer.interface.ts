@@ -1,5 +1,5 @@
 export interface CustomerInterface {
-  key?: string;
+  key?: string | null;
   name: string;
   email: string;
   mobile: string;
