@@ -1,1 +1,22 @@
-<p>customers-list works!</p>
+<h2>Список покупателей</h2>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Имя и фамилия</th>
+    <th scope="col">Email</th>
+    <th scope="col">Телефон</th>
+    <th scope="col">Город</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers$ | async let i = index">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ customer.name }}</td>
+    <td>{{ customer.email }}</td>
+    <td>{{ customer.mobile }}</td>
+    <td>{{ customer.location }}</td>
+  </tr>
+  </tbody>
+</table>
