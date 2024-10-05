@@ -6,7 +6,7 @@
 
   <tbody>
   <tr *ngFor="let customer of customers$ | async let i = index">
-    <th class="align-middle" scope="row">{{ i + 1 }}</th>
+    <th class="align-middle numbers" scope="row">{{ i + 1 }}</th>
     <ng-container *ngTemplateOutlet="isEditPos === i ? thenBlock : elseBlock context: {$implicit: customer}"></ng-container>
     <ng-container *ngTemplateOutlet="customerControlsBlock context: {customer: customer, index: i}"></ng-container>
   </tr>
